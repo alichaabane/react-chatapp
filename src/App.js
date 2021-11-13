@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
-
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
@@ -20,7 +19,6 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
-// const analytics = firebase.analytics();
 
 
 function App() {
@@ -31,7 +29,7 @@ function App() {
     <div className="App">
       <header>
         <h1>⚛️🔥💬</h1>
-        <SignOut />
+        {user ? <SignOut /> : 'CopyRight © Ali Chaabane'}
       </header>
 
       <section>
@@ -51,8 +49,18 @@ function SignIn() {
 
   return (
     <>
-      <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
-      <p>Do not violate the community guidelines or you will be banned for life!</p>
+    <div className='classi'>
+         <div className='g-sign-in-button' onClick={signInWithGoogle}>
+    <div className='content-wrapper'>
+        <div className='logo-wrapper'>
+            <img src='https://developers.google.com/identity/images/g-logo.png' alt='signin' />
+        </div>
+        <span className='text-container'>
+      <span>Sign in with Google</span>
+    </span>
+    </div>
+</div>
+</div>
     </>
   )
 
@@ -63,7 +71,6 @@ function SignOut() {
     <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
   )
 }
-
 
 function ChatRoom() {
   const dummy = useRef();
@@ -118,7 +125,7 @@ function ChatMessage(props) {
 
   return (<>
     <div className={`message ${messageClass}`}>
-      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} alt="User" />
       <p>{text}</p>
     </div>
   </>)
